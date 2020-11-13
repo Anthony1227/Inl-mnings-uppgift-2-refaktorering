@@ -9,10 +9,10 @@ namespace Inlamning_2_ra_kod
 {
     class Person
     {
-        public string namn, adress, telephone, email;
+        public string name, adress, telephone, email;
         public Person(string N, string A, string T, string E)
         {
-            namn = N; adress = A; telephone = T; email = E;
+            name = N; adress = A; telephone = T; email = E;
         }
     }
     class Program
@@ -68,7 +68,7 @@ namespace Inlamning_2_ra_kod
                     int found = -1;
                     for (int i = 0; i < Dict.Count(); i++)
                     {
-                        if (Dict[i].namn == wantToRemove) found = i;
+                        if (Dict[i].name == wantToRemove) found = i;
                     }
                     if (found == -1)
                     {
@@ -84,7 +84,7 @@ namespace Inlamning_2_ra_kod
                     for (int i = 0; i < Dict.Count(); i++)
                     {
                         Person P = Dict[i];
-                        Console.WriteLine("{0}, {1}, {2}, {3}", P.namn, P.adress, P.telephone, P.email);
+                        Console.WriteLine("{0}, {1}, {2}, {3}", P.name, P.adress, P.telephone, P.email);
                     }
                 }
                 else if (command == "ändra")
@@ -94,7 +94,7 @@ namespace Inlamning_2_ra_kod
                     int found = -1;
                     for (int i = 0; i < Dict.Count(); i++)
                     {
-                        if (Dict[i].namn == wantToChange) found = i;
+                        if (Dict[i].name == wantToChange) found = i;
                     }
                     if (found == -1)
                     {
@@ -108,7 +108,7 @@ namespace Inlamning_2_ra_kod
                         string newValue = Console.ReadLine();
                         switch (fieldToChange)
                         {
-                            case "namn": Dict[found].namn = newValue; break;
+                            case "namn": Dict[found].name = newValue; break;
                             case "adress": Dict[found].adress = newValue; break;
                             case "telefon": Dict[found].telephone = newValue; break;
                             case "email": Dict[found].email = newValue; break;
