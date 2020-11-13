@@ -25,15 +25,19 @@ namespace Inlamning_2_ra_kod
             Console.Write("Laddar adresslistan ... ");
             using (StreamReader fileStream = new StreamReader(@"C:\Users\Anthony\newadressfile.txt"))
             {
-                while (fileStream.Peek() >= 0)
+                try
                 {
-                    string line = fileStream.ReadLine();
-                    // Console.WriteLine(line);
-                    string[] word = line.Split('#');
-                    // Console.WriteLine("{0}, {1}, {2}, {3}", word[0], word[1], word[2], word[3]);
-                    Person P = new Person(word[0], word[1], word[2], word[3]);
-                    Dict.Add(P);
+                    while (fileStream.Peek() >= 0)
+                    {
+                        string line = fileStream.ReadLine();
+                        // Console.WriteLine(line);
+                        string[] word = line.Split('#');
+                        // Console.WriteLine("{0}, {1}, {2}, {3}", word[0], word[1], word[2], word[3]);
+                        Person P = new Person(word[0], word[1], word[2], word[3]);
+                        Dict.Add(P);
+                    }
                 }
+                catch { }
             }
             Console.WriteLine("klart!");
 
@@ -122,5 +126,7 @@ namespace Inlamning_2_ra_kod
                 }
             } while (command != "sluta");
         }
+
+
     }
 }
