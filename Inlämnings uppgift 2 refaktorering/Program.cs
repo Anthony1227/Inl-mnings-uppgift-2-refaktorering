@@ -54,71 +54,19 @@ namespace Inlamning_2_ra_kod
                 }
                 else if (command == "ny")
                 {
-                    Console.WriteLine("Lägger till ny person");
-                    Console.Write("  1. ange namn:    ");
-                    string name = Console.ReadLine();
-                    Console.Write("  2. ange adress:  ");
-                    string adress = Console.ReadLine();
-                    Console.Write("  3. ange telefon: ");
-                    string telephone = Console.ReadLine();
-                    Console.Write("  4. ange email:   ");
-                    string email = Console.ReadLine();
-                    Dict.Add(new Person(name, adress, telephone, email));
+                    AddPerson(Dict);
                 }
                 else if (command == "ta bort")
                 {
-                    Console.Write("Vem vill du ta bort (ange namn): ");
-                    string wantToRemove = Console.ReadLine();
-                    int found = -1;
-                    for (int i = 0; i < Dict.Count(); i++)
-                    {
-                        if (Dict[i].name == wantToRemove) found = i;
-                    }
-                    if (found == -1)
-                    {
-                        Console.WriteLine("Tyvärr: {0} fanns inte i telefonlistan", wantToRemove);
-                    }
-                    else
-                    {
-                        Dict.RemoveAt(found);
-                    }
+                    RemovePerson(Dict);
                 }
                 else if (command == "visa")
                 {
-                    for (int i = 0; i < Dict.Count(); i++)
-                    {
-                        Person P = Dict[i];
-                        Console.WriteLine("{0}, {1}, {2}, {3}", P.name, P.adress, P.telephone, P.email);
-                    }
+                    ShowPeople(Dict);
                 }
                 else if (command == "ändra")
                 {
-                    Console.Write("Vem vill du ändra (ange namn): ");
-                    string wantToChange = Console.ReadLine();
-                    int found = -1;
-                    for (int i = 0; i < Dict.Count(); i++)
-                    {
-                        if (Dict[i].name == wantToChange) found = i;
-                    }
-                    if (found == -1)
-                    {
-                        Console.WriteLine("Tyvärr: {0} fanns inte i telefonlistan", wantToChange);
-                    }
-                    else
-                    {
-                        Console.Write("Vad vill du ändra (namn, adress, telefon eller email): ");
-                        string fieldToChange = Console.ReadLine();
-                        Console.Write("Vad vill du ändra {0} på {1} till: ", fieldToChange, wantToChange);
-                        string newValue = Console.ReadLine();
-                        switch (fieldToChange)
-                        {
-                            case "namn": Dict[found].name = newValue; break;
-                            case "adress": Dict[found].adress = newValue; break;
-                            case "telefon": Dict[found].telephone = newValue; break;
-                            case "email": Dict[found].email = newValue; break;
-                            default: break;
-                        }
-                    }
+                    ChangePerson(Dict);
                 }
                 else
                 {
@@ -127,6 +75,76 @@ namespace Inlamning_2_ra_kod
             } while (command != "sluta");
         }
 
+        static void AddPerson(List<Person>Dict)
+        {
+            Console.WriteLine("Lägger till ny person");
+            Console.Write("  1. ange namn:    ");
+            string name = Console.ReadLine();
+            Console.Write("  2. ange adress:  ");
+            string adress = Console.ReadLine();
+            Console.Write("  3. ange telefon: ");
+            string telephone = Console.ReadLine();
+            Console.Write("  4. ange email:   ");
+            string email = Console.ReadLine();
+            Dict.Add(new Person(name, adress, telephone, email));
+        }
 
+        static void RemovePerson(List<Person> Dict)
+        {
+            Console.Write("Vem vill du ta bort (ange namn): ");
+            string wantToRemove = Console.ReadLine();
+            int found = -1;
+            for (int i = 0; i < Dict.Count(); i++)
+            {
+                if (Dict[i].name == wantToRemove) found = i;
+            }
+            if (found == -1)
+            {
+                Console.WriteLine("Tyvärr: {0} fanns inte i telefonlistan", wantToRemove);
+            }
+            else
+            {
+                Dict.RemoveAt(found);
+            }
+        }
+
+        static void ShowPeople(List<Person> Dict)
+        {
+            for (int i = 0; i < Dict.Count(); i++)
+            {
+                Person P = Dict[i];
+                Console.WriteLine("{0}, {1}, {2}, {3}", P.name, P.adress, P.telephone, P.email);
+            }
+        }
+
+        static void ChangePerson(List<Person> Dict)
+        {
+            Console.Write("Vem vill du ändra (ange namn): ");
+            string wantToChange = Console.ReadLine();
+            int found = -1;
+            for (int i = 0; i < Dict.Count(); i++)
+            {
+                if (Dict[i].name == wantToChange) found = i;
+            }
+            if (found == -1)
+            {
+                Console.WriteLine("Tyvärr: {0} fanns inte i telefonlistan", wantToChange);
+            }
+            else
+            {
+                Console.Write("Vad vill du ändra (namn, adress, telefon eller email): ");
+                string fieldToChange = Console.ReadLine();
+                Console.Write("Vad vill du ändra {0} på {1} till: ", fieldToChange, wantToChange);
+                string newValue = Console.ReadLine();
+                switch (fieldToChange)
+                {
+                    case "namn": Dict[found].name = newValue; break;
+                    case "adress": Dict[found].adress = newValue; break;
+                    case "telefon": Dict[found].telephone = newValue; break;
+                    case "email": Dict[found].email = newValue; break;
+                    default: break;
+                }
+            }
+        }
     }
 }
