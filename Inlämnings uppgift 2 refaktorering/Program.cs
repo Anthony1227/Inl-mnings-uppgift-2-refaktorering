@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Inlamning_2_ra_kod
 {
+    /* CLASS: Person
+    * PURPOSE: Used as an object for personal information, loaded into a list of persons in Main
+    */
     class Person
     {
         public string name, adress, telephone, email;
@@ -30,9 +33,7 @@ namespace Inlamning_2_ra_kod
                     while (fileStream.Peek() >= 0)
                     {
                         string line = fileStream.ReadLine();
-                        // Console.WriteLine(line);
                         string[] word = line.Split('#');
-                        // Console.WriteLine("{0}, {1}, {2}, {3}", word[0], word[1], word[2], word[3]);
                         Person P = new Person(word[0], word[1], word[2], word[3]);
                         Dict.Add(P);
                     }
@@ -75,6 +76,10 @@ namespace Inlamning_2_ra_kod
             } while (command != "sluta");
         }
 
+        /* CONSTRUCTOR: AddPerson (static)
+         * PURPOSE: Asks the user for data and inserts it into the new person's entry
+         * PARAMETERS: None
+         */
         static void AddPerson(List<Person>Dict)
         {
             Console.WriteLine("Lägger till ny person");
@@ -89,6 +94,11 @@ namespace Inlamning_2_ra_kod
             Dict.Add(new Person(name, adress, telephone, email));
         }
 
+        /* METHOD: RemovePerson (static)
+         * PURPOSE: Removes an entry/a person (with address, phone & email) from the list
+         * PARAMETERS: List<Person> Dict - The list which the entry/person will be removed from
+         * RETURN VALUE: List<Person> Dict - The updated list
+         */
         static void RemovePerson(List<Person> Dict)
         {
             Console.Write("Vem vill du ta bort (ange namn): ");
@@ -108,6 +118,11 @@ namespace Inlamning_2_ra_kod
             }
         }
 
+        /* METHOD: ShowPeople (static)
+         * PURPOSE: Used to print the info of the current person
+         * PARAMETERS: None
+         * RETURN VALUE: None
+         */
         static void ShowPeople(List<Person> Dict)
         {
             for (int i = 0; i < Dict.Count(); i++)
@@ -117,6 +132,12 @@ namespace Inlamning_2_ra_kod
             }
         }
 
+        /* METHOD: ChangePerson (static)
+         * PURPOSE: Inserts a new value into a the current person's data
+         * PARAMETERS: string WantToChange - The field to be changed,
+         *             string value - The new value to be inserted
+         * RETURN VALUE: None
+         */
         static void ChangePerson(List<Person> Dict)
         {
             Console.Write("Vem vill du ändra (ange namn): ");
